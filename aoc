@@ -1,0 +1,1 @@
+./AdventOfCode2022.Cli/bin/Debug/net6.0/aoc $1 $2 $3
