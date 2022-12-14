@@ -10,7 +10,7 @@ namespace AdventOfCode2022.Cli
 
   public static class Program
   {
-    public static void Main(string[] args)
+    private static void Main(string[] args)
     {
       try {
         if(args.Length < 2) throw new ArgException("Bad args");
@@ -20,7 +20,7 @@ namespace AdventOfCode2022.Cli
 
         var part = int.Parse(args[1]);
         if(part < 1 || part > 2) throw new ArgException("Bad part");
-        
+
         var typeName = $"Dec{date:00}";
         var assemblyQualifiedTypeName = $"AdventOfCode2022.{typeName}, AdventOfCode2022";
         var type = Type.GetType(assemblyQualifiedTypeName);
