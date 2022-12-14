@@ -26,7 +26,7 @@ namespace AdventOfCode2022.Cli
         var type = Type.GetType(assemblyQualifiedTypeName);
         if(type == null) throw new Exception("type is null");
 
-        var inputFile = (args.Length == 3 && args[2] == "test") ? "test-input.txt" : "input.txt";
+        var inputFile = (args.Length == 3) ? args[2] : "input.txt";
         var inputFilePath = Path.Combine(RootFolderName(), "data", typeName.ToLower(), inputFile);
 
         var day = Activator.CreateInstance(type, inputFilePath);
@@ -54,14 +54,14 @@ namespace AdventOfCode2022.Cli
     private static void ShowUsage()
     {
       Console.WriteLine();
-      Console.WriteLine("USAGE:  aoc <date> <part> [test]");
+      Console.WriteLine("USAGE:  aoc <date> <part> [<test-input-filename>]");
       Console.WriteLine();
       Console.WriteLine("For example, this ...");
-      Console.WriteLine("  aoc 13 1 test");
-      Console.WriteLine("... will run part 1 of the Dec 13 challenge with test data");
+      Console.WriteLine("  aoc 13 1 test-input.txt");
+      Console.WriteLine("... will run part 1 of the Dec 13 challenge with data from the file test-input.txt");
       Console.WriteLine("And this ...");
       Console.WriteLine("  aoc 24 2");
-      Console.WriteLine("... will run part 2 of the Dec 24 challenge with full data");
+      Console.WriteLine("... will run part 2 of the Dec 24 challenge with full data (from the file input.txt)");
     }
 
     private static string RootFolderName([System.Runtime.CompilerServices.CallerFilePath] string thisFilePath = "")
