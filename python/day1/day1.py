@@ -38,14 +38,14 @@ def is_blank(line):
   return re.match(r'^\s*$', line)
 
 
-def part1():
+def part_1(file_path):
   with open(file_path, 'r') as lines:
     lines = (line.rstrip('\n') for line in lines)
     block_totals = (sum(map(int, block)) for block in split_list(lines, is_blank))
     print(max(block_totals))
   
 
-def part2():
+def part_2(file_path):
   with open(file_path, 'r') as lines:
     lines = (line.rstrip('\n') for line in lines)
     block_totals = (sum(map(int, block)) for block in split_list(lines, is_blank))
@@ -53,17 +53,22 @@ def part2():
     print(sum(block_totals_desc[:3]))
 
 
-if len(sys.argv) != 3:
-  print(f'Usage: python3 {sys.argv[0]} <part> <file_path>')
-  exit(1)
+def main():
+  if len(sys.argv) != 3:
+    print(f'Usage: python3 {sys.argv[0]} <part> <file_path>')
+    exit(1)
 
-part = sys.argv[1]
-file_path = sys.argv[2]
+  part = sys.argv[1]
+  file_path = sys.argv[2]
 
-if part == '1':
-  part1()
-elif part == '2':
-  part2()
-else:
-  print('Unknown part')
-  exit(1)
+  if part == '1':
+    part_1(file_path)
+  elif part == '2':
+    part_2(file_path)
+  else:
+    print('Unknown part')
+    exit(1)
+
+
+if __name__ == "__main__":
+  main()
